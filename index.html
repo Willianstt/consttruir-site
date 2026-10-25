@@ -1,4 +1,666 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><title>Consttruir Engenharia</title>
-<meta http-equiv="refresh" content="0; url=reformas/"><link rel="canonical" href="reformas/"></head>
-<body><a href="reformas/">Consttruir Engenharia</a></body></html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="img/logo.png">
+<title>Consttruir Reformas</title>
+<meta name="description" content="Reformas completas em Chapecó com equipe de engenharia responsável, orçamento detalhado e prazo em contrato. Consttruir Engenharia, 15 anos construindo em Chapecó.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<!-- Meta Pixel e Google Analytics entram aqui quando a página for ao ar -->
+<style>
+/* Layout: cinema escuro de concreto. Fotos em tela cheia, títulos gigantes em grotesca condensada,
+   palavras-chave em serifa itálica, mostarda só nos pontos de decisão (CTA, prazos, marcações de obra). */
+:root{
+  --night:#121110;
+  --concrete:#1a1917;
+  --slab:#23221f;
+  --line:rgba(239,237,231,.14);
+  --fg:#f1efe9;
+  --muted:#a8a49a;
+  --mustard:#dcaa26;
+  --mustard-hi:#efc045;
+  --mustard-ink:#1d1806;
+  --paper:#ebe8e0;
+  --ink:#1b1a17;
+  --ink-muted:#5f5b52;
+  --red:#c2452f;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --wrap:1240px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--mustard);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-family:var(--display);line-height:.95;text-wrap:balance}
+h2{font-size:clamp(2.4rem,6vw,5rem);font-weight:850;font-stretch:72%;text-transform:uppercase;letter-spacing:-.01em}
+h3{font-weight:700;font-stretch:88%;font-size:1.4rem;line-height:1.1}
+p{margin:0}
+.it{font:inherit}
+.y{color:var(--mustard)}
+.kicker{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mustard)}
+.kicker::before{content:"";width:28px;height:2px;background:currentColor}
+.lead{font-size:1.15rem;color:var(--muted);max-width:58ch}
+section{padding-block:clamp(80px,11vw,150px)}
+
+/* Botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.65em;font-family:var(--display);font-stretch:95%;font-weight:750;font-size:1.02rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;padding:1.1em 1.6em;border:1.5px solid transparent;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.btn svg{width:1.3em;height:1.3em;flex:none}
+.btn-primary{background:var(--mustard);color:var(--mustard-ink)}
+.btn-primary:hover{background:var(--mustard-hi);transform:translateY(-2px)}
+.btn-line{border-color:rgba(241,239,233,.45);color:var(--fg)}
+.btn-line:hover{border-color:var(--fg);background:rgba(241,239,233,.06)}
+.btn .arr{transition:transform .25s}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* Topo */
+.top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.top.solid{background:rgba(18,17,16,.92);backdrop-filter:blur(10px);border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px}
+.top img{height:40px;width:auto}
+.top nav{display:flex;align-items:center;gap:28px;font-size:.92rem}
+.top nav a:not(.btn){text-decoration:none;color:var(--muted);transition:color .2s}
+.top nav a:not(.btn):hover{color:var(--fg)}
+.top .btn{padding:.75em 1.15em;font-size:.86rem}
+
+/* Hero */
+.hero{position:relative;min-height:min(900px,100svh);display:flex;flex-direction:column;justify-content:flex-end;padding-block:120px 0;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.08);animation:kb 18s ease-out forwards}
+@keyframes kb{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,17,16,.95) 0%,rgba(18,17,16,.78) 42%,rgba(18,17,16,.25) 100%),linear-gradient(0deg,var(--night) 0%,rgba(18,17,16,0) 38%)}
+.hero-inner{display:grid;gap:30px;max-width:900px;padding-bottom:56px}
+.hero h1{font-size:clamp(3.2rem,9.4vw,8.4rem);font-weight:900;font-stretch:66%;text-transform:uppercase;letter-spacing:-.015em;line-height:.88}
+.hero h1 .it{color:var(--mustard)}
+.hero .lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:#d6d2c8}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-stats{border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr)}
+.hero-stats div{padding:24px 20px 28px;border-left:1px solid var(--line);min-width:0}
+.hero-stats div:first-child{border-left:0;padding-left:0}
+.hero-stats strong{display:block;font-family:var(--display);font-stretch:70%;font-weight:850;font-size:clamp(2rem,3.6vw,3.1rem);line-height:1;font-variant-numeric:tabular-nums}
+.hero-stats span{font-size:.88rem;color:var(--muted)}
+
+/* Faixa corrida */
+.ticker{background:var(--mustard);color:var(--mustard-ink);overflow:hidden;white-space:nowrap;padding-block:16px;border-block:1px solid #b88a14}
+.ticker-track{display:inline-flex;gap:0;animation:tick 38s linear infinite}
+.ticker span{font-family:var(--display);font-stretch:72%;font-weight:850;font-size:1.5rem;text-transform:uppercase;letter-spacing:.01em;padding-right:34px}
+.ticker span::after{content:"◆";margin-left:34px;font-size:.6em;vertical-align:.3em}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* Manifesto + dores */
+.manifesto{background:var(--paper);color:var(--ink)}
+.manifesto .kicker{color:#94700d}
+.manifesto-top{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(32px,6vw,90px);align-items:end;margin-top:26px}
+.statement{font-family:var(--display);font-stretch:74%;font-weight:850;text-transform:uppercase;font-size:clamp(2.2rem,5vw,4.2rem);line-height:.95;text-wrap:balance;min-width:0}
+.manifesto-side{display:grid;gap:14px;font-size:1.08rem;color:var(--ink-muted);border-left:3px solid var(--mustard);padding-left:24px;min-width:0}
+.manifesto-side b{color:var(--ink);font-weight:600}
+.statement .it{color:#94700d}
+.dores{margin-top:clamp(56px,7vw,90px);display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--ink)}
+.dor{padding:30px 26px 34px 0;border-right:1px solid #cdc9bd;display:grid;gap:12px;align-content:start;min-width:0}
+.dor + .dor{padding-left:26px}
+.dor:last-child{border-right:0}
+.dor .n{font-family:var(--mono);font-size:.78rem;color:#94700d;letter-spacing:.1em}
+.dor h3{font-size:1.45rem;font-stretch:80%;text-transform:uppercase;font-weight:800}
+.dor p{color:var(--ink-muted);font-size:.98rem}
+
+/* Comparativo */
+.vs .head{display:grid;gap:22px;max-width:820px;margin-bottom:56px}
+.vs-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:0;align-items:stretch}
+.vs-col{padding:clamp(28px,4vw,48px);min-width:0}
+.vs-col h3{font-size:clamp(1.6rem,3vw,2.3rem);font-stretch:72%;font-weight:850;text-transform:uppercase;margin-bottom:6px}
+.vs-col .sub{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.vs-col ul{list-style:none;margin:0;padding:0;display:grid}
+.vs-col li{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:15px 0;border-top:1px solid var(--line)}
+.vs-old{background:var(--slab);color:var(--muted)}
+.vs-old li::before{content:"✕";color:var(--red);font-weight:700}
+.vs-new{background:var(--mustard);color:var(--mustard-ink);position:relative}
+.vs-new .sub{color:#5b4507}
+.vs-new li{border-color:rgba(29,24,6,.2);font-weight:600}
+.vs-new li::before{content:"✓";font-weight:800}
+.vs-new .seal{position:absolute;top:-16px;right:24px;background:var(--night);color:var(--mustard);font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px}
+
+/* Quebra de imagem */
+.breaker{position:relative;min-height:clamp(420px,70vh,720px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.breaker img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.breaker::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(18,17,16,.92) 0%,rgba(18,17,16,.2) 60%)}
+.breaker blockquote{margin:0;padding-block:60px;max-width:900px}
+.breaker blockquote p{font-family:var(--display);font-stretch:72%;font-weight:850;text-transform:uppercase;font-size:clamp(2rem,4.6vw,3.8rem);line-height:.98;text-wrap:balance}
+.breaker blockquote p .y{color:var(--mustard)}
+.breaker cite{display:block;margin-top:18px;font-style:normal;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mustard)}
+
+/* Método */
+.metodo .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:28px;margin-bottom:64px}
+.metodo .head > div{display:grid;gap:22px;max-width:720px}
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:p}
+.passo{position:relative;padding:0 28px 0 0;min-width:0}
+.passo .num{font-family:var(--display);font-stretch:62%;font-weight:900;font-size:clamp(4.5rem,8vw,7rem);line-height:.8;color:transparent;-webkit-text-stroke:1.5px var(--mustard);display:block;margin-bottom:22px}
+.passo .bar{height:2px;background:var(--line);margin-bottom:24px;position:relative}
+.passo .bar::after{content:"";position:absolute;left:0;top:-4px;width:10px;height:10px;background:var(--mustard)}
+.passo h3{margin-bottom:12px}
+.passo p{color:var(--muted);font-size:.98rem}
+
+/* Prazos */
+.prazos{background:var(--concrete);border-block:1px solid var(--line)}
+.prazos .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,6vw,96px);align-items:center}
+.prazos .txt{display:grid;gap:22px;min-width:0}
+.escala{display:grid;gap:30px;min-width:0}
+.escala-row{display:grid;gap:10px}
+.escala-row .lbl{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.escala-row .lbl b{font-family:var(--display);font-stretch:85%;font-weight:750;font-size:1.2rem}
+.escala-row .lbl span{font-family:var(--mono);font-size:.86rem;color:var(--mustard)}
+.trilho{position:relative;height:16px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/6))}
+.trilho i{position:absolute;top:3px;bottom:3px;background:var(--mustard)}
+.escala-row small{color:var(--muted);font-size:.9rem}
+.eixo{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+
+/* Obras */
+.obras .head{display:grid;gap:22px;max-width:760px;margin-bottom:56px}
+.destaque{display:grid;grid-template-columns:1.2fr .8fr;gap:0;background:var(--slab);margin-bottom:18px}
+.destaque .foto{position:relative;min-width:0;overflow:hidden}
+.destaque .foto img{width:100%;height:100%;min-height:420px;object-fit:cover;transition:transform .8s}
+.destaque:hover .foto img{transform:scale(1.03)}
+.ficha{padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;justify-content:space-between;gap:30px;min-width:0}
+.ficha h3{font-size:clamp(2rem,3.4vw,3rem);font-stretch:70%;font-weight:850;text-transform:uppercase}
+.ficha dl{margin:0;display:grid;font-family:var(--mono);font-size:.86rem}
+.ficha dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line)}
+.ficha dt{color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.ficha dd{margin:0;text-align:right}
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{position:relative;margin:0;min-width:0;background:var(--slab);overflow:hidden;display:flex;flex-direction:column}
+.card button.ver{all:unset;cursor:zoom-in;display:block;overflow:hidden}
+.card button.ver:focus-visible{outline:3px solid var(--mustard);outline-offset:-3px}
+.card img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .8s}
+.card:hover img{transform:scale(1.04)}
+.card figcaption{padding:18px 20px 22px;display:grid;gap:6px}
+.card .meta{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.card.txt{padding:26px 24px;justify-content:space-between;gap:24px;border:1px solid var(--line);background:transparent}
+.card.txt .big{font-family:var(--display);font-stretch:62%;font-weight:900;font-size:clamp(3.4rem,5vw,4.6rem);line-height:.85;color:var(--mustard)}
+.card.txt .big small{display:block;font-family:var(--mono);font-size:.78rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.card.txt p{color:var(--muted);font-size:.96rem;margin-top:10px}
+.tag{display:inline-block;width:max-content;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--mustard);color:var(--mustard-ink);padding:4px 9px}
+
+/* Origem */
+.origem{background:var(--paper);color:var(--ink)}
+.origem .kicker{color:#94700d}
+.origem .wrap{display:grid;gap:clamp(48px,6vw,80px)}
+.origem .txt{display:grid;grid-template-columns:1fr 1fr;gap:24px clamp(40px,6vw,96px);align-items:start;min-width:0}
+.origem .txt .col{display:grid;gap:24px;min-width:0}
+.origem .lead{color:var(--ink-muted)}
+.origem h2 .it{color:#94700d}
+.predios{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,24px);align-items:end;min-width:0;padding-top:36px}
+.predios figure{margin:0;min-width:0}
+.predios img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.predios figure:nth-child(2){transform:translateY(-36px)}
+.predios figcaption{font-family:var(--mono);font-size:.82rem;line-height:1.4;margin-top:10px;color:var(--ink-muted)}
+.predios figcaption b{display:block;color:var(--ink);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.servicos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid #cdc9bd}
+.servicos li{padding:14px 12px 14px 0;border-bottom:1px solid #cdc9bd;font-weight:600;font-size:.96rem}
+.servicos li::before{content:"■";color:var(--mustard);font-size:.6em;margin-right:10px;vertical-align:.2em}
+
+/* FAQ */
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px);align-items:start}
+.faq .side{display:grid;gap:22px;position:sticky;top:110px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:26px 48px 26px 0;position:relative;font-family:var(--display);font-stretch:88%;font-weight:700;font-size:1.3rem;line-height:1.2}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:18px;font-size:2rem;font-weight:400;color:var(--mustard);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 26px;color:var(--muted);max-width:62ch}
+
+/* Contato */
+.contato{position:relative;isolation:isolate;overflow:hidden}
+.contato .bgimg{position:absolute;inset:0;z-index:-2}
+.contato .bgimg img{width:100%;height:100%;object-fit:cover}
+.contato::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,17,16,.97) 0%,rgba(18,17,16,.9) 50%,rgba(18,17,16,.75) 100%)}
+.contato .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:center}
+.contato .txt{display:grid;gap:26px;min-width:0}
+.contato h2{font-size:clamp(2.8rem,7vw,6rem)}
+.dados{font-family:var(--mono);font-size:.9rem;display:grid;gap:8px;color:#d6d2c8}
+.dados a{text-decoration-color:var(--mustard);text-underline-offset:3px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--paper);color:var(--ink);padding:clamp(24px,3.4vw,40px);min-width:0;box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+form .ftitle{grid-column:1/-1;font-family:var(--display);font-stretch:75%;font-weight:850;font-size:1.8rem;text-transform:uppercase;line-height:1}
+form .fsub{grid-column:1/-1;color:var(--ink-muted);font-size:.95rem;margin-top:-6px}
+.campo{display:grid;gap:6px;min-width:0}
+.campo.full{grid-column:1/-1}
+label{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+input,select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1px solid #cdc9bd;border-radius:0;padding:13px 12px;width:100%;color-scheme:light}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--mustard);outline-offset:0;border-color:var(--mustard)}
+textarea{min-height:92px;resize:vertical}
+form .btn{grid-column:1/-1}
+.aviso{grid-column:1/-1;font-size:.8rem;color:var(--ink-muted)}
+.erro{grid-column:1/-1;color:#a3321f;font-weight:600;font-size:.92rem}
+
+footer{padding-block:44px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+footer img{height:32px;width:auto}
+
+.zap{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:45;width:62px;height:62px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px -8px rgba(0,0,0,.65);transition:transform .2s}
+.zap:hover{transform:scale(1.08)}
+.zap svg{width:33px;height:33px}
+.zap::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:70;background:rgba(10,10,9,.95);display:grid;place-items:center;padding:calc(56px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(56px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb img{max-height:100%;max-width:100%;width:auto;object-fit:contain}
+.lb p{position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));text-align:center;font-family:var(--mono);font-size:.82rem;color:var(--muted);padding-inline:16px}
+.lb button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));background:none;border:1px solid var(--line);width:44px;height:44px;font-size:1.4rem;cursor:pointer;color:var(--fg)}
+
+/* Entrada suave (só para o que está abaixo da dobra) */
+.rv{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.pre{opacity:0;transform:translateY(34px)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv.pre{opacity:1;transform:none}
+}
+
+@media (max-width:1000px){
+  .top nav a:not(.btn){display:none}
+  .dores{grid-template-columns:1fr 1fr}
+  .dor:nth-child(2){border-right:0}
+  .dor:nth-child(3){padding-left:0}
+  .dor:nth-child(n+3){border-top:1px solid #cdc9bd}
+  .passos{grid-template-columns:1fr 1fr;row-gap:48px}
+  .prazos .wrap,.faq .wrap,.contato .wrap,.origem .txt,.manifesto-top{grid-template-columns:1fr}
+  .faq .side{position:static}
+  .destaque{grid-template-columns:1fr}
+  .destaque .foto img{min-height:0;aspect-ratio:4/3}
+  .grade{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .top img{height:32px}
+  .top .btn .t{display:none}
+  .hero{min-height:0;padding-top:110px}
+  .hero::after{background:linear-gradient(0deg,var(--night) 8%,rgba(18,17,16,.72) 55%,rgba(18,17,16,.5) 100%)}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .hero-stats div:nth-child(3){border-left:0;padding-left:0}
+  .hero-stats div:nth-child(n+3){border-top:1px solid var(--line)}
+  .ctas .btn{width:100%}
+  .dores{grid-template-columns:1fr}
+  .dor,.dor + .dor{padding:26px 0;border-right:0}
+  .dor:nth-child(n+2){border-top:1px solid #cdc9bd}
+  .vs-grid{grid-template-columns:1fr}
+  .vs-new{margin-top:16px}
+  .passos{grid-template-columns:1fr}
+  .grade{grid-template-columns:1fr}
+  .card img{aspect-ratio:4/3.6}
+  .servicos{grid-template-columns:1fr}
+  form{grid-template-columns:1fr}
+  .predios figure:nth-child(2){transform:translateY(-18px)}
+}
+</style>
+</head>
+<body>
+
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a href="#inicio" aria-label="Consttruir Engenharia, início"><img src="img/logo.png" alt="Consttruir Engenharia" width="700" height="242"></a>
+    <nav>
+      <a href="#metodo">Método</a>
+      <a href="#obras">Obras</a>
+      <a href="#faq">Dúvidas</a>
+      <a class="btn btn-primary" href="#contato"><span class="t">Solicitar orçamento</span><span class="arr" aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero" style="padding-bottom:0">
+    <div class="hero-bg"><img src="img/montecchi-hall.jpg" alt="" width="960" height="1280"></div>
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="kicker">Reformas completas em Chapecó</p>
+        <h1>Reforma com <span class="it">prazo</span> no contrato e <span class="it">engenharia</span> na obra.</h1>
+        <p class="lead">Apartamentos, casas, salas comerciais, clínicas e prédios inteiros. A Consttruir assume a obra do projeto à entrega das chaves, e você só acompanha.</p>
+        <div class="ctas">
+          <a class="btn btn-primary js-zap" href="https://wa.me/554999047070" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+            Pedir orçamento no WhatsApp
+          </a>
+          <a class="btn btn-line" href="#obras">Ver obras entregues <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div><strong>15 anos</strong><span>construindo em Chapecó</span></div>
+        <div><strong>+18 mil m²</strong><span>em obras executadas</span></div>
+        <div><strong>30–60 dias</strong><span>prazo das reformas de apartamento e sala</span></div>
+        <div><strong>Engenharia</strong><span>equipe responsável pela sua obra</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Apartamentos</span><span>Casas</span><span>Salas comerciais</span><span>Clínicas</span><span>Retrofit de prédios</span><span>Troca de fachada</span><span>Elétrica e hidráulica novas</span><span>Mudança de layout</span>
+      <span>Apartamentos</span><span>Casas</span><span>Salas comerciais</span><span>Clínicas</span><span>Retrofit de prédios</span><span>Troca de fachada</span><span>Elétrica e hidráulica novas</span><span>Mudança de layout</span>
+    </div>
+  </div>
+
+  <section class="manifesto">
+    <div class="wrap">
+      <p class="kicker">O que ninguém conta antes da reforma</p>
+      <div class="manifesto-top">
+        <p class="statement rv">Toda reforma que vira dor de cabeça tem a mesma causa: <span class="it">ninguém responde pela obra inteira.</span></p>
+        <div class="manifesto-side rv">
+          <p>O pedreiro responde pela parede. O eletricista, pelos fios. O marceneiro, pelos móveis.</p>
+          <p><b>E quem responde pelo prazo, pelo custo e pelo resultado final?</b></p>
+          <p>Na Consttruir, é a nossa equipe de engenharia. É ela que planeja, coordena e entrega a obra completa.</p>
+        </div>
+      </div>
+      <div class="dores">
+        <div class="dor rv"><span class="n">01 · Prazo</span><h3>A obra que não acaba</h3><p>Dois meses viram cinco. Você paga aluguel dobrado, adia a mudança ou fica com o negócio fechado.</p></div>
+        <div class="dor rv"><span class="n">02 · Custo</span><h3>O orçamento que muda</h3><p>Cada semana aparece um "imprevisto". O valor final não tem nada a ver com o combinado.</p></div>
+        <div class="dor rv"><span class="n">03 · Gestão</span><h3>Você vira o mestre de obras</h3><p>Cotar material, cobrar pedreiro, coordenar eletricista e marceneiro. Tudo no seu horário de trabalho.</p></div>
+        <div class="dor rv"><span class="n">04 · Técnica</span><h3>O problema escondido</h3><p>Elétrica improvisada, impermeabilização mal feita, fissura que volta seis meses depois do acabamento pronto.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vs">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="kicker">A diferença</p>
+        <h2>Empreiteiro executa. <span class="it y">A Consttruir</span> responde pela obra.</h2>
+      </div>
+      <div class="vs-grid">
+        <div class="vs-col vs-old rv">
+          <h3>Empreiteiro comum</h3>
+          <p class="sub">Só mão de obra</p>
+          <ul>
+            <li>Preço "por cima", sem detalhamento</li>
+            <li>Prazo combinado de boca</li>
+            <li>Você compra material e coordena as equipes</li>
+            <li>Ninguém assina a parte técnica</li>
+            <li>Problema aparece depois que tudo está fechado</li>
+            <li>Você precisa estar na obra para saber como está</li>
+          </ul>
+        </div>
+        <div class="vs-col vs-new rv">
+          <span class="seal">Modelo Consttruir</span>
+          <h3>Empresa de engenharia</h3>
+          <p class="sub">Responsabilidade total</p>
+          <ul>
+            <li>Orçamento item a item antes de começar</li>
+            <li>Cronograma por escrito e prazo no contrato</li>
+            <li>Compras, equipes e fornecedores coordenados por nós</li>
+            <li>Equipe de engenharia responsável do início ao fim</li>
+            <li>Projetos de estrutura, elétrica e hidráulica feitos aqui dentro</li>
+            <li>Andamento da obra informado a você durante a execução</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="breaker">
+    <img src="img/dualita.jpg" alt="Ambiente reformado com painel de madeira, iluminação linear e TV embutida" width="960" height="1280" style="object-position:50% 55%">
+    <div class="wrap">
+      <blockquote class="rv">
+        <p>Cada decisão técnica passa pela <span class="y">engenharia</span> antes de virar obra.</p>
+        <cite>Reforma Dualitá · 70 m² · Chapecó</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <section class="metodo" id="metodo">
+    <div class="wrap">
+      <div class="head">
+        <div class="rv">
+          <p class="kicker">Método Consttruir</p>
+          <h2>Da visita técnica à <span class="it y">entrega das chaves</span></h2>
+        </div>
+        <a class="btn btn-line rv" href="#contato">Agendar visita técnica <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="passos">
+        <div class="passo rv"><span class="num">01</span><div class="bar"></div><h3>Visita técnica</h3><p>Vamos ao imóvel, ouvimos o que você quer e avaliamos estrutura, elétrica e hidráulica existentes.</p></div>
+        <div class="passo rv"><span class="num">02</span><div class="bar"></div><h3>Projeto e orçamento</h3><p>Se a reforma pede projeto, fazemos. Você recebe o orçamento item a item e o cronograma da obra.</p></div>
+        <div class="passo rv"><span class="num">03</span><div class="bar"></div><h3>Execução controlada</h3><p>Engenharia acompanhando a obra, compras e equipes coordenadas por nós. Você acompanha sem precisar estar lá.</p></div>
+        <div class="passo rv"><span class="num">04</span><div class="bar"></div><h3>Entrega vistoriada</h3><p>Conferimos cada item antes de entregar. Limpo, testado e pronto para usar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prazos">
+    <div class="wrap">
+      <div class="txt rv">
+        <p class="kicker">Quanto tempo leva</p>
+        <h2>Prazo definido <span class="it y">antes</span> de começar</h2>
+        <p class="lead">O prazo da sua obra sai da visita técnica e vai para o contrato. Estas são as faixas das reformas que fazemos.</p>
+      </div>
+      <div class="escala rv" role="img" aria-label="Faixas de prazo: reformas de apartamento, sala e clínica de 30 a 60 dias; reformas estruturais e retrofit de prédio até cerca de 6 meses">
+        <div class="escala-row">
+          <div class="lbl"><b>Apartamento, sala comercial, clínica</b><span>30 a 60 dias</span></div>
+          <div class="trilho"><i style="left:calc(100%/6);width:calc(100%/6)"></i></div>
+          <small>Troca de revestimentos, layout novo, marcenaria, elétrica e hidráulica.</small>
+        </div>
+        <div class="escala-row">
+          <div class="lbl"><b>Reforma estrutural e retrofit de prédio</b><span>até ~6 meses</span></div>
+          <div class="trilho"><i style="left:calc(100%/6);width:calc(100%*5/6)"></i></div>
+          <small>Mudança de uso, nova fachada, reforço estrutural. Ex.: prédio de 3 andares convertido em comercial e apartamentos novos.</small>
+        </div>
+        <div class="eixo"><span>0</span><span>1 mês</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6 meses</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="obras" id="obras">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="kicker">Portfólio</p>
+        <h2>Obras que <span class="it y">falam</span> por nós</h2>
+      </div>
+      <article class="destaque rv">
+        <div class="foto"><img src="img/apto-140-cozinha.jpg" alt="Cozinha planejada do apartamento mobiliado de 140 m²" width="960" height="1280"></div>
+        <div class="ficha">
+          <div style="display:grid;gap:16px">
+            <span class="tag">Obra em destaque</span>
+            <h3>Apartamento mobiliado</h3>
+            <p style="color:var(--muted)">Apartamento entregue pronto para morar: orçamento, cronograma e execução completos sob responsabilidade da Consttruir.</p>
+          </div>
+          <dl>
+            <div><dt>Área</dt><dd>140,00 m²</dd></div>
+            <div><dt>Local</dt><dd>Chapecó-SC</dd></div>
+            <div><dt>Escopo</dt><dd>Orçamento · cronograma · execução</dd></div>
+          </dl>
+          <a class="btn btn-primary js-zap" href="https://wa.me/554999047070" target="_blank" rel="noopener">Quero uma obra assim <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <div class="grade">
+        <figure class="card rv">
+          <button class="ver" data-src="img/dualita.jpg" data-cap="Dualitá · 70 m² · reforma completa" aria-label="Ampliar foto da reforma Dualitá"><img src="img/dualita.jpg" alt="Sala reformada com painel em madeira" width="960" height="1280"></button>
+          <figcaption><h3>Dualitá</h3><span class="meta">70,00 m² · reforma completa</span></figcaption>
+        </figure>
+        <figure class="card rv">
+          <button class="ver" data-src="img/montecchi-hall.jpg" data-cap="Residencial Montecchi · hall e lazer mobiliados" aria-label="Ampliar foto do hall do Residencial Montecchi"><img src="img/montecchi-hall.jpg" alt="Hall do Residencial Montecchi" width="960" height="1280"></button>
+          <figcaption><h3>Hall Montecchi</h3><span class="meta">hall e lazer mobiliados</span></figcaption>
+        </figure>
+        <div class="card txt rv">
+          <span class="tag">Retrofit</span>
+          <div><div class="big">3 andares<small>~6 meses de obra</small></div><p>Prédio antigo convertido em um andar comercial e dois andares de apartamentos novos, com fachada nova.</p></div>
+        </div>
+        <div class="card txt rv">
+          <span class="tag">Clínica</span>
+          <div><div class="big">Salas<small>novo layout</small></div><p>Reestruturação da paginação das salas de atendimento de uma clínica em Chapecó.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="origem">
+    <div class="wrap">
+      <div class="predios rv">
+        <figure><img src="img/montecchi.jpg" alt="Residencial Montecchi" width="410" height="547"><figcaption><b>Montecchi</b>8.407 m²</figcaption></figure>
+        <figure><img src="img/golden-gate.jpg" alt="Golden Gate Residence" width="900" height="1200"><figcaption><b>Golden Gate</b>6.658 m²</figcaption></figure>
+        <figure><img src="img/azteca.jpg" alt="Residencial Azteca" width="900" height="1200"><figcaption><b>Azteca</b>3.051 m²</figcaption></figure>
+      </div>
+      <div class="txt rv">
+        <div class="col">
+          <p class="kicker">Quem faz a sua obra</p>
+          <h2>A engenharia das grandes obras <span class="it">aplicada à sua reforma</span></h2>
+        </div>
+        <div class="col">
+        <p class="lead">A Consttruir nasceu da STT Construtora e Incorporadora, que há 15 anos constrói em Chapecó. A mesma engenharia que executou o Montecchi, o Golden Gate e o Azteca agora está à disposição da sua reforma.</p>
+        <ul class="servicos">
+          <li>Projeto estrutural</li>
+          <li>Projeto elétrico e telecom</li>
+          <li>Projeto hidrossanitário</li>
+          <li>Preventivo contra incêndio</li>
+          <li>Orçamento e cronograma</li>
+          <li>Apoio com financiamento</li>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="side rv">
+        <p class="kicker">Dúvidas frequentes</p>
+        <h2>Antes de <span class="it y">chamar</span></h2>
+        <p class="lead">Não encontrou sua dúvida? Fale direto com a nossa equipe pelo WhatsApp.</p>
+      </div>
+      <div class="rv">
+        <details><summary>Vocês fazem pequenos reparos?</summary><p>Não. Nosso foco são reformas completas ou de grande porte: apartamento inteiro, casa, sala comercial, clínica ou prédio. Para trocar uma torneira ou pintar um cômodo, outro profissional vai atender você melhor.</p></details>
+        <details><summary>Quanto tempo leva uma reforma?</summary><p>Reformas de apartamento, sala ou clínica costumam levar de 30 a 60 dias. Reformas estruturais e retrofit de prédio podem levar cerca de 6 meses. O prazo da sua obra sai na visita técnica e vai para o contrato.</p></details>
+        <details><summary>Preciso ter projeto antes de chamar?</summary><p>Não. Se a reforma pedir projeto de estrutura, elétrica ou hidráulica, desenvolvemos aqui dentro. Se você já tem arquiteto, trabalhamos junto com ele.</p></details>
+        <details><summary>Como funciona o orçamento?</summary><p>Você conta o que quer pelo WhatsApp, marcamos a visita técnica e depois enviamos o orçamento item a item com o cronograma da obra.</p></details>
+        <details><summary>Vocês ajudam com financiamento?</summary><p>Sim. Quando a obra precisa de crédito, ajudamos com análise, documentação e aprovação no banco.</p></details>
+        <details><summary>Atendem fora de Chapecó?</summary><p>Atendemos Chapecó. Para outra cidade, fale com a gente pelo WhatsApp e avaliamos o caso.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contato" id="contato">
+    <div class="bgimg"><img src="img/execucao.jpg" alt="" width="1400" height="1050"></div>
+    <div class="wrap">
+      <div class="txt rv">
+        <p class="kicker">Orçamento</p>
+        <h2>Sua reforma <span class="it y">começa</span> com uma conversa técnica</h2>
+        <p class="lead" style="color:#d6d2c8">Conte o que você quer fazer. A mensagem já chega pronta no nosso WhatsApp e marcamos a visita técnica.</p>
+        <div class="dados">
+          <span>WhatsApp (49) 9 9904-7070</span>
+          <span>consttruirengenharia@gmail.com</span>
+          <span>Rua Condá, 659 D, Sala 302 · Presidente Médici · Chapecó-SC</span>
+          <a href="https://www.instagram.com/consttruir.engenharia/" target="_blank" rel="noopener">@consttruir.engenharia</a>
+        </div>
+      </div>
+      <form id="form" novalidate class="rv">
+        <p class="ftitle">Solicitar orçamento</p>
+        <p class="fsub">Leva 1 minuto.</p>
+        <div class="campo"><label for="nome">Seu nome</label><input id="nome" autocomplete="name" required></div>
+        <div class="campo"><label for="tel">WhatsApp</label><input id="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="(49) 9 ____-____" required></div>
+        <div class="campo"><label for="tipo">Tipo de imóvel</label>
+          <select id="tipo" required>
+            <option value="">Selecione</option>
+            <option>Apartamento</option><option>Casa</option><option>Sala comercial / loja</option><option>Clínica / consultório</option><option>Prédio inteiro</option><option>Outro</option>
+          </select></div>
+        <div class="campo"><label for="area">Área aproximada</label>
+          <select id="area">
+            <option value="">Não sei</option>
+            <option>Até 50 m²</option><option>50 a 100 m²</option><option>100 a 200 m²</option><option>Mais de 200 m²</option>
+          </select></div>
+        <div class="campo full"><label for="quando">Quando quer começar</label>
+          <select id="quando">
+            <option value="">Selecione</option>
+            <option>O quanto antes</option><option>Nos próximos 3 meses</option><option>Ainda estou planejando</option>
+          </select></div>
+        <div class="campo full"><label for="desc">O que você quer reformar</label><textarea id="desc" placeholder="Ex.: reforma completa do apartamento, trocar piso, refazer elétrica e banheiros"></textarea></div>
+        <p class="erro" id="erro" hidden>Preencha nome, WhatsApp e tipo de imóvel.</p>
+        <a class="btn btn-primary" id="enviar" href="https://wa.me/554999047070" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Enviar pelo WhatsApp
+        </a>
+        <p class="aviso">Seus dados são usados só para responder a este pedido de orçamento (LGPD).</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo.png" alt="Consttruir Engenharia" width="700" height="242">
+    <span>Consttruir Engenharia · nascida da STT Construtora e Incorporadora · Chapecó-SC</span>
+  </div>
+</footer>
+
+<a class="zap js-zap" href="https://wa.me/554999047070" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+</a>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+  <button id="lbX" aria-label="Fechar">✕</button>
+</div>
+
+<script>
+(function(){
+  var NUM='554999047070';
+  var base='Olá! Vi a página da Consttruir e quero um orçamento de reforma.';
+  document.querySelectorAll('.js-zap').forEach(function(a){a.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(base)});
+
+  /* Topo sólido ao rolar */
+  var top=document.getElementById('top');
+  function onScroll(){top.classList.toggle('solid',window.scrollY>40)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* Entrada suave só para o que começa abaixo da dobra */
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el,i){
+      if(el.getBoundingClientRect().top>window.innerHeight){el.classList.add('pre');el.style.transitionDelay=((i%4)*80)+'ms';io.observe(el)}
+    });
+  }
+
+  /* Galeria */
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),last;
+  document.querySelectorAll('button.ver').forEach(function(b){b.addEventListener('click',function(){
+    last=b;lbImg.src=b.dataset.src;lbImg.alt=b.dataset.cap;lbCap.textContent=b.dataset.cap;lb.hidden=false;document.getElementById('lbX').focus();
+  })});
+  function close(){lb.hidden=true;if(last)last.focus()}
+  document.getElementById('lbX').addEventListener('click',close);
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close()});
+
+  /* Formulário → WhatsApp */
+  var f=document.getElementById('form'),btn=document.getElementById('enviar'),erro=document.getElementById('erro');
+  function v(id){return (document.getElementById(id).value||'').trim()}
+  function msg(){
+    var l=['Olá! Quero um orçamento de reforma (vim pela página da Consttruir).',''];
+    if(v('nome'))l.push('Nome: '+v('nome'));
+    if(v('tel'))l.push('WhatsApp: '+v('tel'));
+    if(v('tipo'))l.push('Imóvel: '+v('tipo'));
+    if(v('area'))l.push('Área: '+v('area'));
+    if(v('quando'))l.push('Início: '+v('quando'));
+    if(v('desc'))l.push('O que quero reformar: '+v('desc'));
+    return l.join('\n');
+  }
+  function upd(){btn.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(msg())}
+  f.addEventListener('input',upd);f.addEventListener('change',upd);upd();
+  f.addEventListener('submit',function(e){e.preventDefault()});
+  btn.addEventListener('click',function(e){
+    if(!v('nome')||!v('tel')||!v('tipo')){e.preventDefault();erro.hidden=false;return}
+    erro.hidden=true;
+    /* Quando o Meta Pixel estiver instalado: fbq('track','Lead'); */
+  });
+})();
+</script>
+
+</body>
+</html>
