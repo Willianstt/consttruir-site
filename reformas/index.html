@@ -9,7 +9,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<!-- Meta Pixel e Google Analytics entram aqui quando a página for ao ar -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1670068954527080');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1670068954527080&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
 /* Layout: cinema escuro de concreto. Fotos em tela cheia, títulos gigantes em grotesca condensada,
    palavras-chave em serifa itálica, mostarda só nos pontos de decisão (CTA, prazos, marcações de obra). */
@@ -614,6 +630,7 @@ footer img{height:32px;width:auto}
   var NUM='554999047070';
   var base='Olá! Vi a página da Consttruir e quero um orçamento de reforma.';
   document.querySelectorAll('.js-zap').forEach(function(a){a.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(base)});
+  document.querySelectorAll('.js-zap').forEach(function(a){a.addEventListener('click',function(){if(window.fbq)fbq('track','Contact',{content_name:'Botao WhatsApp'})})});
 
   /* Topo sólido ao rolar */
   var top=document.getElementById('top');
@@ -657,7 +674,7 @@ footer img{height:32px;width:auto}
   btn.addEventListener('click',function(e){
     if(!v('nome')||!v('tel')||!v('tipo')){e.preventDefault();erro.hidden=false;return}
     erro.hidden=true;
-    /* Quando o Meta Pixel estiver instalado: fbq('track','Lead'); */
+    if(window.fbq)fbq('track','Lead',{content_name:'Formulario reformas'});
   });
 })();
 </script>
